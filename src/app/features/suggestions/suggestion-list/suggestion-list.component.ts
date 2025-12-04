@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Suggestion } from '../../models/suggestion';
+import { Suggestion } from '../../../models/suggestion';
 
 @Component({
-  selector: 'app-list-suggestion',
-  templateUrl: './list-suggestion.component.html',
-  styleUrls: ['./list-suggestion.component.css']
+  selector: 'app-suggestion-list',
+  templateUrl: './suggestion-list.component.html',
+  styleUrls: ['./suggestion-list.component.css']
 })
-export class ListSuggestionComponent implements OnInit {
+export class SuggestionListComponent implements OnInit {
   searchTerm: string = '';
   filteredSuggestions: Suggestion[] = [];
   

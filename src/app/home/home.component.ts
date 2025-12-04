@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  v1: string = "hello";
-   v3(){
-    alert("vous aver cliquer");
-  }
 }
