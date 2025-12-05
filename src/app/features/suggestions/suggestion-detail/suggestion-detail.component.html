@@ -1,9 +1,32 @@
 <div class="detail-container" *ngIf="suggestion">
-  <!-- Bouton retour -->
-  <button class="back-btn" (click)="goBackToList()">
-    <span class="back-icon">←</span>
-    <span>Retour à la liste</span>
-  </button>
+  <!-- Navigation -->
+  <div class="navigation-bar">
+    <button class="back-btn" (click)="goBackToList()">
+      <span class="back-icon">←</span>
+      <span>Retour à la liste</span>
+    </button>
+    
+    <div class="nav-buttons">
+      <button 
+        class="nav-btn prev-btn" 
+        (click)="goToPrevious()" 
+        [disabled]="!hasPrevious()"
+        title="Suggestion précédente"
+      >
+        <span>←</span>
+        <span>Précédent</span>
+      </button>
+      <button 
+        class="nav-btn next-btn" 
+        (click)="goToNext()" 
+        [disabled]="!hasNext()"
+        title="Suggestion suivante"
+      >
+        <span>Suivant</span>
+        <span>→</span>
+      </button>
+    </div>
+  </div>
 
   <!-- Carte de détails -->
   <div class="detail-card" [ngClass]="{'rejected': isRejected()}">

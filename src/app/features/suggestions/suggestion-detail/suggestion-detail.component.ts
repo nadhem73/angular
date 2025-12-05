@@ -71,11 +71,20 @@ export class SuggestionDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Récupérer l'ID depuis l'URL
+    //Récupérer l'ID depuis l'URL
     this.route.params.subscribe(params => {
-      this.suggestionId = +params['id'];
+     this.suggestionId = +params['id'];
       this.loadSuggestion();
     });
+
+    // this.suggestionId = +this.route.snapshot.params['id'];
+    // this.loadSuggestion();
+ 
+
+
+
+
+
   }
 
   loadSuggestion(): void {
@@ -100,5 +109,31 @@ export class SuggestionDetailComponent implements OnInit {
 
   isRejected(): boolean {
     return this.suggestion?.status === 'refusee';
+  }
+
+  goToPrevious(): void {
+    const currentIndex = this.suggestions.findIndex(s => s.id === this.suggestionId);
+    if (currentIndex > 0) {
+      const previousId = this.suggestions[currentIndex - 1].id;
+      this.router.navigate(['/suggestions', previousId]);
+    }
+  }
+
+  goToNext(): void {
+    const currentIndex = this.suggestions.findIndex(s => s.id === this.suggestionId);
+    if (currentIndex < this.suggestions.length - 1) {
+      const nextId = this.suggestions[currentIndex + 1].id;
+      this.router.navigate(['/suggestions', nextId]);
+    }
+  }
+
+  hasPrevious(): boolean {
+    const currentIndex = this.suggestions.findIndex(s => s.id === this.suggestionId);
+    return currentIndex > 0;
+  }
+
+  hasNext(): boolean {
+    const currentIndex = this.suggestions.findIndex(s => s.id === this.suggestionId);
+    return currentIndex < this.suggestions.length - 1;
   }
 }
