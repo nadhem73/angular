@@ -87,21 +87,7 @@
           title="J'aime cette suggestion"
         >
           <i class="icon-heart">❤️</i>
-          <span class="likes-count">{{ suggestion.likes }}</span>
-        </button>
-        
-        <button 
-          class="action-btn favorite-btn" 
-          [ngClass]="{'active': suggestion.isFavorite}"
-          (click)="onToggleFavorite(suggestion)"
-          [title]="suggestion.isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'"
-        >
-          <i class="icon-star" [ngClass]="{'filled': suggestion.isFavorite}">
-            {{ suggestion.isFavorite ? '⭐' : '☆' }}
-          </i>
-          <span class="favorite-text">
-            {{ suggestion.isFavorite ? 'Favori' : 'Favoris' }}
-          </span>
+          <span class="likes-count">{{ suggestion.nbLikes }}</span>
         </button>
 
         <!-- Bouton Détails -->

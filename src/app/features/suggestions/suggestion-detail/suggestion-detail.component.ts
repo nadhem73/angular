@@ -20,8 +20,7 @@ export class SuggestionDetailComponent implements OnInit {
       category: 'Événements',
       date: new Date('2025-01-20'),
       status: 'acceptee',
-      likes: 12,
-      isFavorite: false
+      nbLikes: 12
     },
     {
       id: 2,
@@ -30,8 +29,7 @@ export class SuggestionDetailComponent implements OnInit {
       category: 'Technologie',
       date: new Date('2025-01-15'),
       status: 'refusee',
-      likes: 5,
-      isFavorite: false
+      nbLikes: 5
     },
     {
       id: 3,
@@ -40,8 +38,7 @@ export class SuggestionDetailComponent implements OnInit {
       category: 'Ressources Humaines',
       date: new Date('2025-01-25'),
       status: 'refusee',
-      likes: 8,
-      isFavorite: true
+      nbLikes: 8
     },
     {
       id: 4,
@@ -50,8 +47,7 @@ export class SuggestionDetailComponent implements OnInit {
       category: 'Technologie',
       date: new Date('2025-01-30'),
       status: 'en_attente',
-      likes: 15,
-      isFavorite: false
+      nbLikes: 15
     },
     {
       id: 5,
@@ -60,8 +56,7 @@ export class SuggestionDetailComponent implements OnInit {
       category: 'Formation',
       date: new Date('2025-02-05'),
       status: 'acceptee',
-      likes: 20,
-      isFavorite: true
+      nbLikes: 20
     }
   ];
 
@@ -93,13 +88,7 @@ export class SuggestionDetailComponent implements OnInit {
 
   onLike(): void {
     if (this.suggestion) {
-      this.suggestion.likes++;
-    }
-  }
-
-  onToggleFavorite(): void {
-    if (this.suggestion) {
-      this.suggestion.isFavorite = !this.suggestion.isFavorite;
+      this.suggestion.nbLikes++;
     }
   }
 

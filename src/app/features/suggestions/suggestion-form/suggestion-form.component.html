@@ -1,0 +1,133 @@
+<div class="form-container">
+  <div class="form-card">
+    <div class="form-header">
+      <h2 class="form-title">
+        <i class="icon-add">➕</i>
+        Ajouter une Suggestion
+      </h2>
+      <p class="form-subtitle">Partagez vos idées pour améliorer notre environnement</p>
+    </div>
+
+    <form [formGroup]="suggestionForm" (ngSubmit)="onSubmit()" class="suggestion-form">
+      
+      <!-- Champ Titre -->
+      <div class="form-group">
+        <label for="title" class="form-label">
+          Titre <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="title" 
+          formControlName="title"
+          class="form-input"
+          [class.invalid]="title?.invalid && title?.touched"
+          placeholder="Entrez le titre de votre suggestion"
+        >
+        <div class="error-messages" *ngIf="title?.invalid && title?.touched">
+          <small class="error-text" *ngIf="title?.errors?.['required']">
+            ⚠️ Le titre est obligatoire
+          </small>
+          <small class="error-text" *ngIf="title?.errors?.['minlength']">
+            ⚠️ Le titre doit contenir au minimum 5 caractères
+          </small>
+          <small class="error-text" *ngIf="title?.errors?.['pattern']">
+            ⚠️ Le titre doit commencer par une majuscule et contenir uniquement des lettres
+          </small>
+        </div>
+      </div>
+
+      <!-- Champ Description -->
+      <div class="form-group">
+        <label for="description" class="form-label">
+          Description <span class="required">*</span>
+        </label>
+        <textarea 
+          id="description" 
+          formControlName="description"
+          class="form-textarea"
+          [class.invalid]="description?.invalid && description?.touched"
+          placeholder="Décrivez votre suggestion en détail (minimum 30 caractères)"
+          rows="5"
+        ></textarea>
+        <div class="char-count">
+          {{ description?.value?.length || 0 }} / 30 caractères minimum
+        </div>
+        <div class="error-messages" *ngIf="description?.invalid && description?.touched">
+          <small class="error-text" *ngIf="description?.errors?.['required']">
+            ⚠️ La description est obligatoire
+          </small>
+          <small class="error-text" *ngIf="description?.errors?.['minlength']">
+            ⚠️ La description doit contenir au minimum 30 caractères
+          </small>
+        </div>
+      </div>
+
+      <!-- Champ Catégorie -->
+      <div class="form-group">
+        <label for="category" class="form-label">
+          Catégorie <span class="required">*</span>
+        </label>
+        <select 
+          id="category" 
+          formControlName="category"
+          class="form-select"
+          [class.invalid]="category?.invalid && category?.touched"
+        >
+          <option value="" disabled selected>Sélectionnez une catégorie</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+        <div class="error-messages" *ngIf="category?.invalid && category?.touched">
+          <small class="error-text" *ngIf="category?.errors?.['required']">
+            ⚠️ La catégorie est obligatoire
+          </small>
+        </div>
+      </div>
+
+      <!-- Champs en lecture seule -->
+      <div class="readonly-fields">
+        <div class="form-group">
+          <label for="date" class="form-label">Date</label>
+          <input 
+            type="date" 
+            id="date" 
+            formControlName="date"
+            class="form-input readonly"
+            readonly
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="status" class="form-label">Statut</label>
+          <input 
+            type="text" 
+            id="status" 
+            formControlName="status"
+            class="form-input readonly"
+            value="En attente"
+            readonly
+          >
+        </div>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn btn-cancel" 
+          (click)="onCancel()"
+        >
+          <i class="icon-cancel">✕</i>
+          <span>Annuler</span>
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-submit" 
+          [disabled]="suggestionForm.invalid"
+        >
+          <i class="icon-submit">✓</i>
+          <span>Soumettre</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

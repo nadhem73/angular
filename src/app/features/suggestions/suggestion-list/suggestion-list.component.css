@@ -45,10 +45,48 @@
   filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.5));
 }
 
-/* Barre de recherche */
+/* Barre de recherche et bouton ajouter */
+.search-add-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .search-container {
+  flex: 1;
   max-width: 600px;
-  margin: 0 auto;
+}
+
+.add-suggestion-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.add-suggestion-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
+}
+
+.add-suggestion-btn:active {
+  transform: translateY(0);
+}
+
+.icon-add {
+  font-size: 1.2rem;
 }
 
 .search-input-wrapper {
@@ -429,6 +467,21 @@
   
   .page-title {
     font-size: 2.5rem;
+  }
+  
+  .search-add-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .search-container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .add-suggestion-btn {
+    width: 100%;
+    justify-content: center;
   }
   
   .card-header {

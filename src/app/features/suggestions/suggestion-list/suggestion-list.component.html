@@ -5,26 +5,38 @@
       Liste des Suggestions
     </h2>
     
-    <!-- Barre de recherche -->
-    <div class="search-container">
-      <div class="search-input-wrapper">
-        <i class="search-icon">🔍</i>
-        <input 
-          type="text" 
-          [(ngModel)]="searchTerm" 
-          (input)="onSearch()"
-          placeholder="Rechercher par titre ou catégorie..."
-          class="search-input"
-        >
-        <button 
-          *ngIf="searchTerm" 
-          (click)="searchTerm = ''; onSearch()" 
-          class="clear-search-btn"
-          title="Effacer la recherche"
-        >
-          ✕
-        </button>
+    <!-- Barre de recherche et bouton ajouter -->
+    <div class="search-add-container">
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <i class="search-icon">🔍</i>
+          <input 
+            type="text" 
+            [(ngModel)]="searchTerm" 
+            (input)="onSearch()"
+            placeholder="Rechercher par titre ou catégorie..."
+            class="search-input"
+          >
+          <button 
+            *ngIf="searchTerm" 
+            (click)="searchTerm = ''; onSearch()" 
+            class="clear-search-btn"
+            title="Effacer la recherche"
+          >
+            ✕
+          </button>
+        </div>
       </div>
+      
+      <!-- Bouton Ajouter suggestion -->
+      <button 
+        class="add-suggestion-btn" 
+        (click)="onAddSuggestion()"
+        title="Ajouter une nouvelle suggestion"
+      >
+        <i class="icon-add">➕</i>
+        <span>Ajouter suggestion</span>
+      </button>
     </div>
   </div>
 
@@ -87,21 +99,7 @@
           title="J'aime cette suggestion"
         >
           <i class="icon-heart">❤️</i>
-          <span class="likes-count">{{ suggestion.likes }}</span>
-        </button>
-        
-        <button 
-          class="action-btn favorite-btn" 
-          [ngClass]="{'active': suggestion.isFavorite}"
-          (click)="onToggleFavorite(suggestion)"
-          [title]="suggestion.isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'"
-        >
-          <i class="icon-star" [ngClass]="{'filled': suggestion.isFavorite}">
-            {{ suggestion.isFavorite ? '⭐' : '☆' }}
-          </i>
-          <span class="favorite-text">
-            {{ suggestion.isFavorite ? 'Favori' : 'Favoris' }}
-          </span>
+          <span class="likes-count">{{ suggestion.nbLikes }}</span>
         </button>
 
         <!-- Bouton Détails -->

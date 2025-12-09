@@ -64,11 +64,7 @@
         </div>
         <div class="meta-item">
           <span class="meta-label">❤️ Likes</span>
-          <span class="meta-value">{{ suggestion.likes }}</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">⭐ Favori</span>
-          <span class="meta-value">{{ suggestion.isFavorite ? 'Oui' : 'Non' }}</span>
+          <span class="meta-value">{{ suggestion.nbLikes }}</span>
         </div>
       </div>
     </div>
@@ -77,15 +73,7 @@
     <div class="detail-actions" *ngIf="!isRejected()">
       <button class="action-btn like-btn" (click)="onLike()">
         <span>❤️</span>
-        <span>J'aime ({{ suggestion.likes }})</span>
-      </button>
-      <button 
-        class="action-btn favorite-btn" 
-        [ngClass]="{'active': suggestion.isFavorite}"
-        (click)="onToggleFavorite()"
-      >
-        <span>{{ suggestion.isFavorite ? '⭐' : '☆' }}</span>
-        <span>{{ suggestion.isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris' }}</span>
+        <span>J'aime ({{ suggestion.nbLikes }})</span>
       </button>
     </div>
 
