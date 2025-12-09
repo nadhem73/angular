@@ -1,158 +1,100 @@
-/* Page 404 moderne et professionnelle */
-.notfound-container {
-  min-height: calc(100vh - 76px);
+.notfound-page {
+  min-height: calc(100vh - 200px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
-  position: relative;
-  z-index: 1;
+  padding: 48px 24px;
 }
 
 .notfound-content {
   text-align: center;
-  max-width: 600px;
-  background: #ffffff;
-  padding: 60px 48px;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(99, 102, 241, 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.notfound-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #6366f1 100%);
-  background-size: 200% 100%;
+  max-width: 500px;
+  background: var(--color-surface);
+  padding: 48px 32px;
+  border-radius: 12px;
+  border: 2px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid var(--color-accent);
 }
 
 .error-code {
-  font-size: 8rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--color-primary);
   line-height: 1;
-  margin-bottom: 24px;
-  letter-spacing: -0.05em;
+  margin-bottom: 16px;
 }
 
 .error-icon {
-  font-size: 4rem;
-  margin-bottom: 32px;
+  font-size: 3rem;
+  margin-bottom: 24px;
   opacity: 0.7;
 }
 
 .error-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #1e293b;
-  margin: 0 0 20px 0;
-  letter-spacing: -0.02em;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
 }
 
 .error-message {
-  font-size: 1.1rem;
-  color: #475569;
-  margin: 0 0 48px 0;
-  line-height: 1.7;
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-bottom: 32px;
+  line-height: 1.6;
 }
 
-/* Action Buttons */
 .action-buttons {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .btn-primary,
 .btn-secondary {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  background: var(--color-primary);
   color: white;
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
-  opacity: 0;
-  transition: opacity 0.2s ease;
+  border: none;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
+  background: #b81e28;
+  box-shadow: 0 4px 12px rgba(215, 38, 49, 0.3);
 }
 
 .btn-secondary {
-  background: rgba(99, 102, 241, 0.1);
-  color: #a5b4fc;
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: var(--color-surface);
+  color: var(--color-text-light);
+  border: 2px solid var(--color-border);
 }
 
 .btn-secondary:hover {
-  background: rgba(99, 102, 241, 0.2);
-  border-color: rgba(99, 102, 241, 0.5);
-  transform: translateY(-2px);
+  background: var(--color-secondary);
+  border-color: var(--color-tertiary);
+  color: var(--color-tertiary);
 }
 
-.btn-icon {
-  font-size: 1.2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.btn-primary span,
-.btn-secondary span {
-  position: relative;
-  z-index: 1;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
   .notfound-content {
-    padding: 48px 32px;
+    padding: 32px 24px;
   }
   
   .error-code {
-    font-size: 5rem;
+    font-size: 4rem;
   }
   
   .error-title {
-    font-size: 2rem;
-  }
-  
-  .error-message {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   
   .action-buttons {
@@ -163,6 +105,5 @@
   .btn-primary,
   .btn-secondary {
     width: 100%;
-    justify-content: center;
   }
 }

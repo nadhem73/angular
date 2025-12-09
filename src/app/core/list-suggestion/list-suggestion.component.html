@@ -1,118 +1,84 @@
-<div class="suggestions-container">
-  <div class="header-section">
-    <h2 class="page-title">
-      <i class="icon-suggestions"></i>
-      Liste des Suggestions
-    </h2>
+<div class="list-page">
+  <div class="page-header">
+    <h2 class="page-title">Liste des Suggestions</h2>
     
-    <!-- Barre de recherche -->
-    <div class="search-container">
-      <div class="search-input-wrapper">
-        <i class="search-icon">🔍</i>
-        <input 
-          type="text" 
-          [(ngModel)]="searchTerm" 
-          (input)="onSearch()"
-          placeholder="Rechercher par titre ou catégorie..."
-          class="search-input"
-        >
-        <button 
-          *ngIf="searchTerm" 
-          (click)="searchTerm = ''; onSearch()" 
-          class="clear-search-btn"
-          title="Effacer la recherche"
-        >
-          ✕
-        </button>
-      </div>
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearch()"
+        placeholder="Rechercher..."
+        class="search-input"
+      >
+      <button 
+        *ngIf="searchTerm" 
+        (click)="searchTerm = ''; onSearch()" 
+        class="clear-btn"
+      >
+        ✕
+      </button>
     </div>
   </div>
 
-  <!-- Résultats de recherche -->
   <div class="results-info" *ngIf="searchTerm">
-    <span class="results-count">
-      {{ filteredSuggestions.length }} résultat(s) trouvé(s) pour "{{ searchTerm }}"
-    </span>
+    {{ filteredSuggestions.length }} résultat(s) pour "{{ searchTerm }}"
   </div>
 
-  <!-- Liste des suggestions -->
-  <div class="suggestions-grid">
-    <div *ngFor="let suggestion of filteredSuggestions" class="suggestion-card" 
-         [ngClass]="{'rejected': isRejected(suggestion.status)}">
+  <div class="grid">
+    <div *ngFor="let suggestion of filteredSuggestions" class="card" 
+         [class.rejected]="isRejected(suggestion.status)">
       
-      <!-- En-tête de la carte -->
       <div class="card-header">
-        <div class="title-section">
-          <h3 class="suggestion-title">{{ suggestion.title }}</h3>
-          <span class="category-badge" [attr.data-category]="suggestion.category">
-            {{ suggestion.category }}
-          </span>
+        <div>
+          <h3 class="card-title">{{ suggestion.title }}</h3>
+          <span class="badge badge-category">{{ suggestion.category }}</span>
         </div>
         
-        <!-- Statut -->
-        <div class="status-container">
-          <span class="status-badge" [ngClass]="{
-            'status-acceptee': suggestion.status === 'acceptee',
-            'status-refusee': suggestion.status === 'refusee',
-            'status-en-attente': suggestion.status === 'en_attente'
-          }">
-            <i class="status-icon" [ngClass]="{
-              'icon-check': suggestion.status === 'acceptee',
-              'icon-cross': suggestion.status === 'refusee',
-              'icon-clock': suggestion.status === 'en_attente'
-            }"></i>
-            {{ suggestion.status === 'acceptee' ? 'Acceptée' : 
-               suggestion.status === 'refusee' ? 'Refusée' : 'En attente' }}
+        <span class="badge" [ngClass]="{
+          'badge-success': suggestion.status === 'acceptee',
+          'badge-error': suggestion.status === 'refusee',
+          'badge-warning': suggestion.status === 'en_attente'
+        }">
+          {{ suggestion.status === 'acceptee' ? 'Acceptée' : 
+             suggestion.status === 'refusee' ? 'Refusée' : 'En attente' }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">{{ suggestion.description }}</p>
+        
+        <div class="card-meta">
+          <span class="meta-item">
+            📅 {{ suggestion.date | date:'dd/MM/yyyy' }}
           </span>
         </div>
       </div>
 
-      <!-- Contenu de la carte -->
-      <div class="card-content">
-        <p class="suggestion-description">{{ suggestion.description }}</p>
-        
-        <div class="meta-info">
-          <span class="date-info">
-            <i class="icon-calendar">📅</i>
-            {{ suggestion.date | date:'dd/MM/yyyy' }}
-          </span>
-        </div>
-      </div>
-
-      <!-- Actions (boutons Like et Favoris) -->
       <div class="card-actions" *ngIf="!isRejected(suggestion.status)">
         <button 
-          class="action-btn like-btn" 
+          class="btn-action btn-like" 
           (click)="onLike(suggestion)"
-          title="J'aime cette suggestion"
         >
-          <i class="icon-heart">❤️</i>
-          <span class="likes-count">{{ suggestion.nbLikes }}</span>
+          ❤️ {{ suggestion.nbLikes }}
         </button>
 
-        <!-- Bouton Détails -->
         <button 
-          class="action-btn details-btn" 
+          class="btn-action btn-details" 
           (click)="onViewDetails(suggestion.id)"
-          title="Voir les détails"
         >
-          <i class="icon-details">👁️</i>
-          <span>Détails</span>
+          Détails
         </button>
       </div>
 
-      <!-- Message pour les suggestions refusées -->
-      <div class="rejected-message" *ngIf="isRejected(suggestion.status)">
-        <i class="icon-info">ℹ️</i>
-        <span>Les actions ne sont pas disponibles pour les suggestions refusées</span>
+      <div class="rejected-notice" *ngIf="isRejected(suggestion.status)">
+        Actions non disponibles pour les suggestions refusées
       </div>
     </div>
   </div>
 
-  <!-- Message si aucun résultat -->
-  <div class="no-results" *ngIf="filteredSuggestions.length === 0">
-    <div class="no-results-content">
-      <i class="icon-search-empty">🔍</i>
+  <div class="empty-state" *ngIf="filteredSuggestions.length === 0">
+    <div class="empty-content">
+      <span class="empty-icon">🔍</span>
       <h3>Aucune suggestion trouvée</h3>
       <p>Essayez de modifier vos critères de recherche</p>
     </div>
