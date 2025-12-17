@@ -1,0 +1,115 @@
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-light);
+  margin-bottom: 32px;
+}
+
+.btn-primary {
+  padding: 12px 32px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #b81e28;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(215, 38, 49, 0.3);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.feature {
+  background: var(--color-surface);
+  padding: 32px 24px;
+  border-radius: 12px;
+  border: 2px solid var(--color-border);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.feature:hover {
+  border-color: var(--color-tertiary);
+  box-shadow: 0 4px 12px rgba(7, 123, 138, 0.15);
+  transform: translateY(-2px);
+}
+
+.feature:nth-child(1):hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(215, 38, 49, 0.15);
+}
+
+.feature:nth-child(2):hover {
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 12px rgba(162, 213, 198, 0.15);
+}
+
+.feature:nth-child(3):hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(92, 60, 146, 0.15);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.feature-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 48px 16px;
+  }
+  
+  .hero {
+    margin-bottom: 48px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+  }
+}

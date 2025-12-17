@@ -1,0 +1,80 @@
+<div class="detail-page" *ngIf="suggestion">
+  <div class="nav-bar">
+    <button class="btn-back" (click)="goBackToList()">
+      ← Retour
+    </button>
+    
+    <div class="nav-buttons">
+      <button 
+        class="btn-nav" 
+        (click)="goToPrevious()" 
+        [disabled]="!hasPrevious()"
+      >
+        ← Précédent
+      </button>
+      <button 
+        class="btn-nav" 
+        (click)="goToNext()" 
+        [disabled]="!hasNext()"
+      >
+        Suivant →
+      </button>
+    </div>
+  </div>
+
+  <div class="detail-card" [class.rejected]="isRejected()">
+    <div class="detail-header">
+      <h1 class="detail-title">{{ suggestion.title }}</h1>
+      <div class="badges">
+        <span class="badge badge-category">{{ suggestion.category }}</span>
+        <span class="badge" [ngClass]="{
+          'badge-success': suggestion.status === 'acceptee',
+          'badge-error': suggestion.status === 'refusee',
+          'badge-warning': suggestion.status === 'en_attente'
+        }">
+          {{ suggestion.status === 'acceptee' ? 'Acceptée' : 
+             suggestion.status === 'refusee' ? 'Refusée' : 'En attente' }}
+        </span>
+      </div>
+    </div>
+
+    <div class="detail-body">
+      <div class="section">
+        <h3 class="section-title">Description</h3>
+        <p class="section-text">{{ suggestion.description }}</p>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Date de création</span>
+          <span class="meta-value">{{ suggestion.date | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Likes</span>
+          <span class="meta-value">{{ suggestion.nbLikes }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-actions" *ngIf="!isRejected()">
+      <button class="btn-action btn-like" (click)="onLike()">
+        ❤️ J'aime ({{ suggestion.nbLikes }})
+      </button>
+    </div>
+
+    <div class="rejected-notice" *ngIf="isRejected()">
+      Cette suggestion a été refusée et ne peut plus être modifiée
+    </div>
+  </div>
+</div>
+
+<div class="not-found" *ngIf="!suggestion">
+  <div class="not-found-content">
+    <span class="not-found-icon">🔍</span>
+    <h2>Suggestion non trouvée</h2>
+    <p>La suggestion demandée n'existe pas ou a été supprimée.</p>
+    <button class="btn-primary" (click)="goBackToList()">
+      Retour à la liste
+    </button>
+  </div>
+</div>
